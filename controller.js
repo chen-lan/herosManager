@@ -59,8 +59,8 @@ module.exports = {
 	},
 	// 登录业务
 	login(req, res) {
-		const isLogin = login(req, res);
-		if (isLogin) {
+		login(req, res);
+		if (req.session.isLogin) {
 			res.redirect("/");
 		} else {
 			res.redirect("/login");
