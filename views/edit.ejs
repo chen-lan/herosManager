@@ -1,0 +1,47 @@
+<%- include("./layout/header.ejs") %>
+<div class="container hero-list">
+	<form action="/edit?id=<%= hero[0].id %>" method="post">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">英雄名称</label>
+			<div class="col-sm-10">
+				<input type="text" name="name" class="form-control" value="<%= hero[0].name %>" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">家庭地址</label>
+			<div class="col-sm-10">
+				<input type="text" name="address" class="form-control" value="<%= hero[0].address %>" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">年龄</label>
+			<div class="col-sm-10">
+				<input type="text" name="age" class="form-control" value="<%= hero[0].age %>" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">个人简介</label>
+			<div class="col-sm-10">
+				<textarea name="description" class="form-control" rows="3"><%= hero[0].description %></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">性别</label>
+			<div class="col-sm-10">
+				<label class="radio-inline"> <input type="radio" value="男" name="gender" <% if(hero[0].gender === "男"){ %>checked<% } %> /> 男 </label>
+				<label class="radio-inline"> <input type="radio" value="女" name="gender" <% if(hero[0].gender === "女"){ %>checked<% } %> /> 女 </label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-10"><%= hero[0].date %></div>
+			<label class="col-sm-2 control-label">创建时间</label>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-success">保存修改</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script src="/node_modules/jquery/dist/jquery.js"></script>
+<%- include("./layout/footer.ejs") %>

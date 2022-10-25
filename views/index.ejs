@@ -1,0 +1,29 @@
+<%- include("./layout/header.ejs") %>
+<div class="container hero-list">
+	<a class="btn btn-success pull-left" href="./add.ejs">添加英雄</a>
+	<table class="table table-hover">
+		<thead>
+			<th>编号</th>
+			<th>名称</th>
+			<th>性别</th>
+			<th>创建时间</th>
+			<th>操作</th>
+		</thead>
+		<tbody>
+			<% heros.forEach(function(hero,i){ %>
+			<tr>
+				<td><%= i + 1 %></td>
+				<td><%= hero.name %></td>
+				<td><%= hero.gender %></td>
+				<td><%= hero.date %></td>
+				<td>
+					<a href="./info.ejs?id=<%= hero.id %>" style="text-decoration: none">查看</a>
+					<a href="./edit.ejs?id=<%= hero.id %>" style="text-decoration: none">编辑</a>
+					<a href="./del?id=<%= hero.id %>" style="text-decoration: none">删除</a>
+				</td>
+			</tr>
+			<% }); %>
+		</tbody>
+	</table>
+</div>
+<%- include("./layout/footer.ejs") %>
