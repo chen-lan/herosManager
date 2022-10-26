@@ -1,5 +1,6 @@
 const express = require("express");
-const router = require("./router");
+const herosRouter = require("./router/herosRouter");
+const userRouter = require("./router/userRouter");
 const path = require("path");
 const session = require("express-session");
 const { connect } = require("http2");
@@ -44,4 +45,5 @@ app.use((req, res, next) => {
 	}
 });
 // 注册路由中间件
-app.use(router);
+app.use(herosRouter);
+app.use(userRouter);

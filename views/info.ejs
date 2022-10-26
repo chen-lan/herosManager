@@ -1,11 +1,12 @@
-<%- include("./layout/header.ejs") %> <% for (let i = 0; i < hero.length; i++) { %>
+<%- include("./layout/header.ejs") %>
 <div class="container hero-list">
-	<p><strong>Id:</strong><%= hero[i].id %></p>
-	<p><strong>姓名:</strong><%= hero[i].name %></p>
-	<p><strong>性别:</strong><%= hero[i].gender %></p>
-	<p><strong>年龄:</strong><%= hero[i].age %></p>
-	<p><strong>地址:</strong><%= hero[i].address %></p>
-	<p><strong>简介:</strong><%= hero[i].description %></p>
-	<p><strong>添加时间:</strong><%= hero[i].date %></p>
+	<p><strong>Id:</strong><%= id %></p>
+	<p><strong>姓名:</strong><%= name %></p>
+	<p><strong>性别:</strong><%= gender %></p>
+	<p><strong>年龄:</strong><%= age %></p>
+	<p><strong>手机号码:</strong><%= phone %></p>
+	<p><strong>地址:</strong><%= address %></p>
+	<p><strong>简介:</strong><%= description %></p>
+	<p><strong>添加时间:</strong><%= date %></p>
 </div>
-<% } %> <%- include("./layout/footer.ejs") %>
+<%- include("./layout/footer.ejs") %>
