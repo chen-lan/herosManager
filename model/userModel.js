@@ -7,4 +7,9 @@ module.exports = {
 		let sql = `select * from user where userName=? and password=?`;
 		connect.query(sql, [userName, password], err => callBack(err));
 	},
+	// 注册业务处理
+	insertRegisterHero(hero, callBack) {
+		const sql = `insert into user set ?`;
+		connect.query(sql, hero, err => callBack(err));
+	},
 };

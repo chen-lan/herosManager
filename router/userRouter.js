@@ -7,6 +7,8 @@ userRouter
 	// -----------
 	.get("/login", controller.renderLogin)
 	.post("/login", controller.login)
-	.get("/logout", controller.logout);
+	.get("/logout", controller.logout)
+	.get("/register.ejs", controller.register)
+	.post("/register", controller.registerHero);
 // 暴露出router，进行交互数据
 module.exports = userRouter;

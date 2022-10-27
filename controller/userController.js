@@ -25,4 +25,17 @@ module.exports = {
 			res.redirect("/login");
 		});
 	},
+	// 渲染注册页面
+	register(req, res) {
+		res.render("register", {});
+	},
+	// 注册英雄
+	registerHero(req, res) {
+		// 获取传过来的post数据对象
+		const hero = req.body;
+		userController.insertRegisterHero(hero, err => {
+			if (err) return res.send(`英雄注册失败：${err.sqlMessage}`);
+			res.redirect("/login");
+		});
+	},
 };
