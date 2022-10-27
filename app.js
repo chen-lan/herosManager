@@ -38,7 +38,7 @@ app.use(
 );
 // 设置中间件，进行拦截未登录页面
 app.use((req, res, next) => {
-	if (req.path === "/login" || req.session.isLogin) {
+	if (req.path === "/login" || req.path === "/register" || req.path === "/register.ejs" || req.session.isLogin) {
 		next();
 	} else {
 		res.redirect("/login");
