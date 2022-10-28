@@ -4,13 +4,14 @@ module.exports = {
 	// 渲染主页面
 	renderIndex(req, res) {
 		herosController.selectAllHeros((err, heros) => {
-			if (err) return res.send(`查询所有英雄数据失败：${err.sqlMessage}`);
-			res.render("index", { heros });
+			const user = req.session.user;
+			if (err) return res.send(`查询所有英雄数据失败：${err}`);
+			res.render("index", { heros, ...user });
 		});
 	},
 	// 渲染添加页面
 	renderAdd(req, res) {
-		res.render("add", {});
+		res.render("add", { ...req.session.user });
 	},
 	// 添加一个英雄
 	addOneHero(req, res) {
@@ -18,7 +19,7 @@ module.exports = {
 		const query = req.query;
 		query.date = moment().format("YYYY-MM-DD HH:mm:ss");
 		herosController.insertOneHero(query, err => {
-			if (err) return res.send(`添加英雄失败：${err.sqlMessage}`);
+			if (err) return res.send(`添加英雄失败：${err}`);
 			res.redirect("/");
 		});
 	},
@@ -27,8 +28,8 @@ module.exports = {
 		// 获取传过来的参数
 		const { id } = req.query;
 		herosController.selectOneHero(id, (err, hero) => {
-			if (err) return res.send(`查询id为${id}英雄数据失败：${err.sqlMessage}`);
-			res.render("info", ...hero);
+			if (err) return res.send(`查询id为${id}英雄数据失败：${err}`);
+			res.render("info", { ...hero[0], ...req.session.user });
 		});
 	},
 	// 渲染修改英雄信息
@@ -36,8 +37,8 @@ module.exports = {
 		// 获取传过来的参数
 		const { id } = req.query;
 		herosController.selectOneHero(id, (err, hero) => {
-			if (err) return res.send(`查询id为${id}英雄数据失败：${err.sqlMessage}`);
-			res.render("edit", ...hero);
+			if (err) return res.send(`查询id为${id}英雄数据失败：${err}`);
+			res.render("edit", { ...hero[0], ...req.session.user });
 		});
 	},
 	// 修改英雄信息
@@ -48,7 +49,7 @@ module.exports = {
 		const postObj = req.body;
 		postObj.date = moment().format("YYYY-MM-DD HH:mm:ss");
 		herosController.updateOneHero(id, postObj, err => {
-			if (err) return res.send(`修改英雄失败：${err.sqlMessage}`);
+			if (err) return res.send(`修改英雄失败：${err}`);
 			res.redirect("/");
 		});
 	},
@@ -57,7 +58,7 @@ module.exports = {
 		// 获取传过来的id参数
 		const { id } = req.query;
 		herosController.delHero(id, err => {
-			if (err) return res.send(`删除id为${id}的英雄数据失败：${err.sqlMessage}`);
+			if (err) return res.send(`删除id为${id}的英雄数据失败：${err}`);
 			res.redirect("/");
 		});
 	},
